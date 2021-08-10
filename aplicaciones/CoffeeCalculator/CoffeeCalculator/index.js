@@ -3,6 +3,7 @@ import { View } from "react-native";
 import Banner from "./Banner";
 
 import Header from "./Header";
+import TripleSelector from "./TripleSelector";
 
 export default function CoffeeCalculator() {
     return (
@@ -14,6 +15,9 @@ export default function CoffeeCalculator() {
         >
             <Header />
             <Banner />
+            <TripleSelector />
+            <TripleSelector />
+            <TripleSelector />
         </View>
     );
 }
