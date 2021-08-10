@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import Banner from "./Banner";
+import CoffeeButton from "./CoffeeButton";
 
 import Header from "./Header";
 import Total from "./Total";
@@ -20,6 +21,7 @@ export default function CoffeeCalculator() {
             <TripleSelector label="Milk" />
             <TripleSelector label="Sugar" />
             <Total total={20.5} />
+            <CoffeeButton />
         </View>
     );
 }
