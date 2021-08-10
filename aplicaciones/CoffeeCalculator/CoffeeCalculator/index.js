@@ -15,14 +15,14 @@ export default function CoffeeCalculator() {
         isValid, 
         updateTotalSize, 
         updateTotalMilk, 
-        updateTotalSugar 
+        updateTotalSugar
     } = useCoffeTotal();
 
     return (
         <View
             style={{
                 flex: 1,
-                backgroundColor: "red"
+                backgroundColor: "white"
             }}
         >
             <Header />
