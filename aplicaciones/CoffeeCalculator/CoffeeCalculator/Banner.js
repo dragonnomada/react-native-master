@@ -6,7 +6,9 @@ export default function Banner() {
         <View>
             <Image
                 source={{
-                    uri: ""
+                    uri: "https://placekitten.com/600",
+                    width: 600,
+                    height: 200
                 }}
             />
         </View>
