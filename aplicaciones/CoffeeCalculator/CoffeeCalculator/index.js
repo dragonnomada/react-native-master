@@ -15,9 +15,9 @@ export default function CoffeeCalculator() {
         >
             <Header />
             <Banner />
-            <TripleSelector />
-            <TripleSelector />
-            <TripleSelector />
+            <TripleSelector label="Size" />
+            <TripleSelector label="Milk" />
+            <TripleSelector label="Sugar" />
         </View>
     );
 }

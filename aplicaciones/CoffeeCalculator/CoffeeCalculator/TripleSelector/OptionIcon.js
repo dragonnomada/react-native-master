@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, TouchableHighlight, View } from "react-native";
 
-export default function OptionIcon({ selected, size, onSelect }) {
+export default function OptionIcon({ label, selected, size, onSelect }) {
     return (
         <View
             style={{
@@ -29,7 +29,7 @@ export default function OptionIcon({ selected, size, onSelect }) {
                             color: selected ? "white" : "darkgray"
                         }}
                     >
-                        A
+                        { label || "X" }
                     </Text>
                 </View>
             </TouchableHighlight>

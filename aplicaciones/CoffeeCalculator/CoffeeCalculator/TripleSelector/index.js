@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 
 import OptionIcon from "./OptionIcon";
 
-export default function TripleSelector() {
+export default function TripleSelector({ label }) {
     const [selectedOption, setSelectedOption] = useState(0);
 
     return (
@@ -19,10 +19,12 @@ export default function TripleSelector() {
         >
             <View
                 style={{
-                    paddingHorizontal: 12
+                    paddingHorizontal: 12,
+                    width: 80,
+                    // backgroundColor: "red"
                 }}
             >
-                <Text>Size</Text>
+                <Text style={{ color: "#555555" }}>{label || "Unknown"}</Text>
             </View>
             <View
                 style={{
@@ -35,16 +37,19 @@ export default function TripleSelector() {
                 }}
             >
                 <OptionIcon 
+                    label="Ch"
                     size={1} 
                     selected={selectedOption === 1} 
                     onSelect={() => setSelectedOption(1)} 
                 />
                 <OptionIcon 
+                    label="M"
                     size={2}
                     selected={selectedOption === 2}
                     onSelect={() => setSelectedOption(2)}
                 />
                 <OptionIcon 
+                    label="G"
                     size={3}
                     selected={selectedOption === 3}
                     onSelect={() => setSelectedOption(3)}
