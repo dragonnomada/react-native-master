@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 
 import OptionIcon from "./OptionIcon";
 
-export default function TripleSelector({ label }) {
+export default function TripleSelector({ label, onSelectOption }) {
     const [selectedOption, setSelectedOption] = useState(0);
+
+    useEffect(() => {
+        if (typeof onSelectOption === "function") {
+            onSelectOption(selectedOption);
+        }
+    }, [selectedOption]);
 
     return (
         <View
