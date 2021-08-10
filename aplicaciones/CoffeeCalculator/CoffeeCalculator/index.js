@@ -12,9 +12,7 @@ import TripleSelector from "./TripleSelector";
 // Milk: 1 (+$0) | 2 (+$5) | 3 (+$10)
 // Sugar: 1 (+$0) | 2 (+$2) | 3 (+$4)
 
-export default function CoffeeCalculator() {
-    const [total, setTotal] = useState(0);
-
+function useCoffeTotal() {
     const [totalSize, setTotalSize] = useState(0);
     const [totalMilk, setTotalMilk] = useState(0);
     const [totalSugar, setTotalSugar] = useState(0);
@@ -23,9 +21,59 @@ export default function CoffeeCalculator() {
     const [isMilkValid, setIsMilkValid] = useState(false);
     const [isSugarValid, setIsSugarValid] = useState(false);
 
-    useEffect(() => {
-        setTotal(totalSize + totalMilk + totalSugar);
-    }, [totalSize, totalMilk, totalSugar]);
+    return {
+        total: totalSize + totalMilk + totalSugar,
+        isValid: isSizeValid && isMilkValid && isSugarValid,
+        updateTotalSize(option) {
+            if (option === 1) {
+                setIsSizeValid(true);
+                setTotalSize(10);
+            } else if (option === 2) {
+                setIsSizeValid(true);
+                setTotalSize(15);
+            } else if (option === 3) {
+                setIsSizeValid(true);
+                setTotalSize(20);
+            } else {
+                setIsSizeValid(false);
+                setTotalSize(0);
+            }
+        },
+        updateTotalMilk(option) {
+            if (option === 1) {
+                setIsMilkValid(true);
+                setTotalMilk(0);
+            } else if (option === 2) {
+                setIsMilkValid(true);
+                setTotalMilk(5);
+            } else if (option === 3) {
+                setIsMilkValid(true);
+                setTotalMilk(10);
+            } else {
+                setIsMilkValid(false);
+                setTotalMilk(0);
+            }
+        },
+        updateTotalSugar(option) {
+            if (option === 1) {
+                setIsSugarValid(true);
+                setTotalSugar(0);
+            } else if (option === 2) {
+                setIsSugarValid(true);
+                setTotalSugar(2);
+            } else if (option === 3) {
+                setIsSugarValid(true);
+                setTotalSugar(4);
+            } else {
+                setIsSugarValid(false);
+                setTotalSugar(0);
+            }
+        }
+    }
+}
+
+export default function CoffeeCalculator() {
+    const { total, isValid, updateTotalSize, updateTotalMilk, updateTotalSugar } = useCoffeTotal();
 
     return (
         <View
@@ -38,60 +86,18 @@ export default function CoffeeCalculator() {
             <Banner />
             <TripleSelector
                 label="Size"
-                onSelectOption={option => {
-                    if (option === 1) {
-                        setIsSizeValid(true);
-                        setTotalSize(10);
-                    } else if (option === 2) {
-                        setIsSizeValid(true);
-                        setTotalSize(15);
-                    } else if (option === 3) {
-                        setIsSizeValid(true);
-                        setTotalSize(20);
-                    } else {
-                        setIsSizeValid(false);
-                        setTotalSize(0);
-                    }
-                }}
+                onSelectOption={updateTotalSize}
             />
             <TripleSelector
                 label="Milk"
-                onSelectOption={option => {
-                    if (option === 1) {
-                        setIsMilkValid(true);
-                        setTotalMilk(0);
-                    } else if (option === 2) {
-                        setIsMilkValid(true);
-                        setTotalMilk(5);
-                    } else if (option === 3) {
-                        setIsMilkValid(true);
-                        setTotalMilk(10);
-                    } else {
-                        setIsMilkValid(false);
-                        setTotalMilk(0);
-                    }
-                }}
+                onSelectOption={updateTotalMilk}
             />
             <TripleSelector
                 label="Sugar"
-                onSelectOption={option => {
-                    if (option === 1) {
-                        setIsSugarValid(true);
-                        setTotalSugar(0);
-                    } else if (option === 2) {
-                        setIsSugarValid(true);
-                        setTotalSugar(2);
-                    } else if (option === 3) {
-                        setIsSugarValid(true);
-                        setTotalSugar(4);
-                    } else {
-                        setIsSugarValid(false);
-                        setTotalSugar(0);
-                    }
-                }}
+                onSelectOption={updateTotalSugar}
             />
             <Total total={total} />
-            <CoffeeButton disabled={!isSizeValid || !isMilkValid || !isSugarValid} />
+            <CoffeeButton disabled={!isValid} />
         </View>
     );
 }
